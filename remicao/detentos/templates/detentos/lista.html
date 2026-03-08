@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Detentos</title>
+</head>
+<body>
+    <h1>Resumo de Remição de Pena</h1>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Nome</th>
+            <th>Processo</th>
+            <th>Pena Total (dias)</th>
+            <th>Dias Remidos</th>
+            <th>Pena Restante (dias)</th>
+            <th>Detalhes</th>
+        </tr>
+        {% for item in dados %}
+        <tr>
+            <td>{{ item.detento.nome }}</td>
+            <td>{{ item.detento.processo }}</td>
+            <td>{{ item.detento.pena_total_dias }}</td>
+            <td>{{ item.dias_remidos }}</td>
+            <td>{{ item.pena_restante }}</td>
+            <td><a href="{% url 'detalhe_detento' item.detento.id %}">Ver Detalhes</a></td>
+            <a href="{% url 'consulta_detento' %}" class="btn btn-primary">Consulta de Detento</a>
+
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

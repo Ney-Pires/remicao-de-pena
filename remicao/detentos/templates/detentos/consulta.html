@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta de Detento</title>
+</head>
+<body>
+    <h1>Consulta de Situação</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nome">Nome do Detento:</label>
+        <input type="text" id="nome" name="nome" required>
+        <button type="submit">Consultar</button>
+    </form>
+
+    {% if resultado %}
+        {% if resultado == "Detento não encontrado." %}
+            <p>{{ resultado }}</p>
+        {% else %}
+            <h2>{{ resultado.detento.nome }}</h2>
+            <p>Processo: {{ resultado.detento.processo }}</p>
+            <p>Pena total: {{ resultado.detento.pena_total_dias }} dias</p>
+            <p>Dias remidos: {{ resultado.dias_remidos }}</p>
+            <p>Pena restante: {{ resultado.pena_restante }} dias</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
